@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    async function loadData() {
+      const res = await fetch('/data');
+      const data = await res.json();
+      document.getElementById('srn').textContent = data.srn || '-';
+      document.getElementById('name').textContent = data.name || '-';
+      document.getElementById('subjects').textContent = [data.subject1, data.subject2, data.subject3].filter(Boolean).join(', ');
+    }
+    window.onload = loadData;
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Dashboard</h2>
+    <p><b>SRN:</b> <span id="srn"></span></p>
+    <p><b>Name:</b> <span id="name"></span></p>
+    <p><b>Subjects:</b> <span id="subjects"></span></p>
+    <a href="/">Logout</a>
+  </div>
+</body>
+</html>
